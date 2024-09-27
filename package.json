@@ -1,0 +1,98 @@
+{
+  "name": "@pho3nixhun/useragents-me-json",
+  "main": "src/index.js",
+  "bin": {
+    "ua-json": "src/index.js"
+  },
+  "files": [
+    "dst/useragents.json",
+    "src"
+  ],
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Pho3nixHun/useragents-me-json/issues"
+  },
+  "homepage": "https://github.com/Pho3nixHun/useragents-me-json",
+  "imports": {
+    "#libs": "./src/libs/index.js"
+  },
+  "exports": {
+    ".": "./dst/useragents.json"
+  },
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A repo that updates itself with the latest data from useragents.me site.",
+  "scripts": {
+    "start": "node .",
+    "build": "node .",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pho3nixHun/useragents-me-json"
+  },
+  "keywords": [
+    "useragents",
+    "json",
+    "useragents.me",
+    "latest",
+    "data",
+    "automated",
+    "update",
+    "npm",
+    "package",
+    "most",
+    "common",
+    "user",
+    "agents",
+    "desktop",
+    "mobile",
+    "windows",
+    "mac",
+    "linux",
+    "android",
+    "ios",
+    "iphone",
+    "ipod",
+    "ipad",
+    "chrome",
+    "firefox",
+    "safari",
+    "opera",
+    "edge",
+    "ie",
+    "internet",
+    "explorer",
+    "browser",
+    "device-hint",
+    "device",
+    "hint",
+    "devicehint",
+    "os-hint",
+    "os",
+    "oshint"
+  ],
+  "contributors": [
+    {
+      "name": "Pho3nixHun",
+      "url": "https://gist.github.com/Pho3nixHun"
+    }
+  ],
+  "directories": {
+    "src": "src",
+    "dst": "dst"
+  },
+  "man": "node . --help",
+  "sideEffects": false,
+  "author": {
+    "name": "Pho3nixHun",
+    "url": "https://gist.github.com/Pho3nixHun"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsdom": "^25.0.1"
+  }
+}

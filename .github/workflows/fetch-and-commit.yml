@@ -1,0 +1,55 @@
+# .github/workflows/fetch-and-commit.yml
+
+name: Fetch and Commit Table Data
+
+on:
+  schedule:
+    - cron: '0 5 * * 0' # Runs every Sunday at 05:00 UTC
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for rebase
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Script
+        run: npm run build
+
+      - name: Check for Changes
+        run: git diff --exit-code || (echo "changed" && exit 1)
+
+      - name: Bump Version
+        if: steps.check-for-changes.outcome == 'success'
+        run: npm version patch
+
+      - name: Commit Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git add package.json
+          git commit -m "Automated json update [skip ci]" || echo "No changes to commit"
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Publish to npm
+        run: npm publish
+        env: 
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
