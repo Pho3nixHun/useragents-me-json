@@ -4,6 +4,9 @@
   "bin": {
     "ua-json": "src/index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dst/useragents.json",
     "src"
